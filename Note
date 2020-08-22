@@ -1,0 +1,85 @@
+#Windows Process Show & Kill
+#netstat -a -o -n|more ||| taskkill /F /PID 7076
+--------------------------
+install modules of client & server
+	npm install
+
+	cd server / 
+		npm install
+
+------------------
+Run dev
+	npm run api			[http://localhost:9000/
+	run run dev			[http://localhost:8080/]
+
+	or [server & client]
+	npm run dev1		[ Web - http://localhost:8080/ & api http://localhost:9000/]
+
+or Run a build
+	[build server & client]
+		npm run prod1
+	Run build at a port
+		npm run serve1 [ Run to port 80]
+		Run -> http://localhost
+
+or Run via pm2 
+	pm2 run development [it will run concurrently all process & run at the port 80]
+---------------------
+Running via pm2  [https://www.youtube.com/watch?v=PkhtCh0HcdE]
+	
+	# NODE_ENV=production PORT=9000 pm2 start ./server/bin/www --name xebiaApi
+	[PM2] Starting /mnt/d/xampp/htdocs/XebiaV1/xebia-scartV2/server/bin/www in fork_mode (1 instance)
+	[PM2] Done.
+	root@TINDTHTOIXL1087:/mnt/d/xampp/htdocs/XebiaV1/xebia-scartV2# pm2 ls
+	┌─────┬─────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+	│ id  │ name        │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+	├─────┼─────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+	│ 17  │ xebiaApi    │ default     │ 0.0.0   │ fork    │ 32669    │ 43s    │ 1    │ online    │ 0%       │ 31.6mb   │ root     │ disabled │
+	│ 16  │ xebiaWeb    │ default     │ N/A     │ fork    │ 30514    │ 2m     │ 0    │ online    │ 0%       │ 1.4mb    │ root     │ disabled │
+	└─────┴─────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+
+	# pm2 show www
+	 Describing process with id 4 - name www
+	┌───────────────────┬──────────────────────────────────────────────────────────┐
+	│ status            │ online                                                   │
+	│ name              │ www                                                      │
+	│ namespace         │ default                                                  │
+	│ version           │ 0.0.0                                                    │
+	│ restarts          │ 0                                                        │
+	│ uptime            │ 101s                                                     │
+	│ script path       │ /mnt/d/xampp/htdocs/XebiaV1/xebia-scartV2/server/bin/www │
+	│ script args       │ N/A                                                      │
+	│ error log path    │ /root/.pm2/logs/www-error.log                            │
+	│ out log path      │ /root/.pm2/logs/www-out.log                              │
+	│ pid p
+
+	
+	Ex : http://localhost:9000/product/listing
+	
+	
+	npm run build [unable to monitor]
+	serve -s build [http://localhost:5000/product]
+	
+	or
+	root@TINDTHTOIXL1087:/mnt/d/xampp/htdocs/XebiaV1/xebia-scartV2# pm2 start ./server.sh --name xebiaWeb
+	root@TINDTHTOIXL1087:/mnt/d/xampp/htdocs/XebiaV1/xebia-scartV2# cat server.sh
+	echo "Serving yourAppName!"
+	serve -s build
+	
+	INFO: Accepting connections at http://localhost:5000
+	
+	or
+	npm run developmenet
+	
+	
+issues
+-------------------
+* Common file not working
+  const utils = require('./../common/utils');
+  console.log(" utils ",utils)
+
+* Login form post not getting in node end
+
+* how to run build via server port
+
+*
