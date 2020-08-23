@@ -8,6 +8,10 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+//const dotenv = require('dotenv');
+//dotenv.config();
+//console.log(`Your port is ${process.env.PORT} - ${process.env.REACT_APP_API_URL}`); // 8626
+
 var app = express();
 
 // view engine setup

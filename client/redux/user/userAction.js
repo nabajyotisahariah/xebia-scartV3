@@ -22,41 +22,8 @@ export const failureRequestAction = (err) => {
     }
 }
 
-
-export const __loginAction = (username, password) => {
-
-    return (dispatch) => {
-
-        dispatch(loginInitiateAction());
-        return axios.get('https://xebiascart.herokuapp.com/users?username=amigo', {})
-        .then( response => {
-
-            //console.log(response);
-            const user = response.data[0];
-
-            //console.log("asyncLoginAction ",user," == ",user.username, " = ",user.password," == ",username," = ",password)
-            if(user.username == username && user.password == password) {
-                
-                localStorage.setItem("userInfo", JSON.stringify(user))
-                return dispatch( successRequestAction(user));
-            }
-            else {
-                return dispatch( failureRequestAction("Login Failed"));
-            } 
-            
-        })
-        .catch( error => {
-            console.log(error);
-            return dispatch(failureRequestAction(error));
-        })
-        .finally(function () {
-            // always executed
-        });  
-    }    
-}
-
 export const loginAction = (username, password) => {
-
+    //console.log("loginAction process.env.API_URL ",process.env.API_URL)
     return (dispatch) => {
 
         dispatch(loginInitiateAction());
@@ -66,7 +33,9 @@ export const loginAction = (username, password) => {
         formData.append('password', password);
         //formData.append('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
 
-        return fetch('http://localhost:9000/users/validate', {
+        console.log(" loginAction __API_URL__ ",__API_URL__)
+
+        return fetch(`${__API_URL__}/users/validate`, {
             body: formData,
             method: "post",
             //headers: { 'content-type': 'application/x-www-form-urlencoded' },

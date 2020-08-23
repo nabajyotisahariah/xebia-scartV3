@@ -22,74 +22,10 @@ export const productFaliureAction = (err) => {
     }
 }
 
-
-export const _productRequestAction = () => {
-    return (dispatch) => {
-        dispatch(productInitiateAction());
-        axios.get('https://xebiascart.herokuapp.com/products', {})
-        .then( response => {
-            console.log(response);
-            if(response.status == 200) {
-                const products = response.data;
-                if(products) {
-                    dispatch( productSuccessAction(products));
-                }
-                else {
-                    dispatch( productFaliureAction("No data"));
-                }
-            }
-            else {
-                dispatch( productFaliureAction("No data"));
-            }
-            
-            
-        })
-        .catch( error => {
-            console.log(error);
-            dispatch( productFaliureAction(error));
-        })
-        .finally(function () {
-            // always executed
-        });  
-    }
-}
-//https://reactjs.org/docs/faq-ajax.html
-export const __productRequestAction = () => {
-    return (dispatch) => {
-        dispatch(productInitiateAction());
-        fetch('https://xebiascart.herokuapp.com/products')
-        .then(res => res.json())
-        .then( response => {
-            console.log("productRequestAction ",response);
-            if(response.length > 0) {
-                const products = response;
-                if(products) {
-                    dispatch( productSuccessAction(products));
-                }
-                else {
-                    dispatch( productFaliureAction("No data"));
-                }
-            }
-            else {
-                dispatch( productFaliureAction("No data"));
-            }
-            
-            
-        })
-        .catch( error => {
-            console.log(error);
-            dispatch( productFaliureAction(error));
-        })
-        .finally(function () {
-            // always executed
-        });  
-    }
-}
-
 export const productRequestAction = () => {
     return (dispatch) => {
         dispatch(productInitiateAction());
-        fetch('http://localhost:9000/product/listing')
+        fetch(`${__API_URL__}/product/listing`)
         .then(res => res.json())
         .then( response => {
             console.log("productRequestAction ",response);
@@ -122,32 +58,11 @@ export const productRequestAction = () => {
 //https://xebiascart.herokuapp.com/products?title=provogue - Autocomplete
 //https://xebiascart.herokuapp.com/filters - Group Filter
 
-export const __searchRequestAction = (key) => {
-
-    return (dispatch) => {
-        return axios.get('https://xebiascart.herokuapp.com/products?title='+key, {})
-        .then( response => {
-            console.log("searchRequestAction ", response);
-            if(response.status == 200) {
-                const products = response.data;
-                if(products) {
-                    dispatch({type: Type.PRODUCT_SEARCH,
-                              payload: products
-                            });
-                }
-                
-            }            
-        })
-        .catch( error => {
-            console.log(error);
-        })
-    }
-}
 
 export const searchRequestAction = (key) => {
 
     return (dispatch) => {
-        return fetch('http://localhost:9000/product/search', {})
+        return fetch(`${__API_URL__}/product/search`, {})
         .then( res => res.json() )
         .then( response => {
             console.log("searchRequestAction ", response);
@@ -168,31 +83,9 @@ export const searchRequestAction = (key) => {
 }
 
 
-export const __filterRequestAction = () => {
-    return (dispatch) => {
-        axios.get('https://xebiascart.herokuapp.com/filters', {})
-        .then( response => {
-            console.log("filterRequestAction ", response);
-            if(response.status == 200) {
-                const products = response.data;
-                if(products) {
-                    dispatch( {
-                        type: Type.PRODUCT_FILTER,
-                        payload:products
-                    });
-                }
-               
-            }
-        })
-        .catch( error => {
-            console.log(error);
-        })
-    }
-}
-
 export const filterRequestAction = () => {
     return (dispatch) => {
-        fetch('http://localhost:9000/product/filter', {})
+        fetch(`${__API_URL__}/product/filter`, {})
         .then( res =>  res.json() )
         .then(response => {
             

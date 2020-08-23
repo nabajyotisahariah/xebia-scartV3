@@ -1,3 +1,11 @@
+Create React App
+	https://create-react-app.dev/docs/getting-started
+
+ReactJS - Environment Setup
+	https://www.tutorialspoint.com/reactjs/reactjs_environment_setup.htm
+	https://www.codementor.io/@seyiadeleke42/setting-up-a-react-development-environment-from-scratch-hbodiez1c
+	
+
 #Windows Process Show & Kill
 #netstat -a -o -n|more ||| taskkill /F /PID 7076
 --------------------------
@@ -70,8 +78,31 @@ Running via pm2  [https://www.youtube.com/watch?v=PkhtCh0HcdE]
 	
 	or
 	npm run developmenet
-	
-	
+-----------------------------
+enviromemt
+	https://www.youtube.com/watch?v=3SH5AQsHypA
+	npm i -g env-cmd
+
+	create file .env-cmdrc
+		{
+			"dev":{
+				BASE_URL : "ABC"
+			},
+			"prod":{
+				BASE_URL : "XYZ"
+			},
+		}	
+
+	package.json
+		"scripts":{
+			"script-dev" : "env-cmd dev react-scripts start"
+		}	
+-------------------------------------------------------------------
+Managing multiple environment configurations in React App
+	https://www.opcito.com/blogs/managing-multiple-environment-configurations-in-react-app/
+
+	npm install -g env-cmd
+
 issues
 -------------------
 * Common file not working
